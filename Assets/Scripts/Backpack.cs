@@ -19,13 +19,16 @@ public class Backpack : MonoBehaviour
     [Inject] private Raycaster _raycaster;
     [Inject] private WebRequestSystem _webRequestSystem;
 
-    private UnityEvent<Item> _onItemAdded;
-    private UnityEvent<Item> _onItemRemoved;
+    [SerializeField] private UnityEvent<Item> _onItemAdded;
+    [SerializeField] private UnityEvent<Item> _onItemRemoved;
 
-    public List<RouteItemToBackpack> RouteItemToBackpack;
+    [SerializeField] private List<RouteItemToBackpack> RouteItemToBackpack;
+
+    private bool _isHitInBackpack;
 
     private void Awake()
     {
+        _input.OnStartHoldLMB += FirstHitInBackpack;
         _input.OnHoldLMB += OpenBackpack;
         _input.OnCancelHoldLMB += CloseBackpack;
         
@@ -37,6 +40,7 @@ public class Backpack : MonoBehaviour
 
     private void OnDestroy()
     {
+        _input.OnStartHoldLMB -= FirstHitInBackpack;
         _input.OnHoldLMB -= OpenBackpack;
         _input.OnCancelHoldLMB -= CloseBackpack;
         
@@ -60,9 +64,17 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    private void OpenBackpack()
+    private void FirstHitInBackpack()
     {
         if (_raycaster.GetHitObject<Backpack>())
+        {
+            _isHitInBackpack = true;
+        }
+    }
+
+    private void OpenBackpack()
+    {
+        if (_raycaster.GetHitObject<Backpack>() && _isHitInBackpack)
         {
             _ui.IsShowUI = true;
         }
@@ -79,6 +91,7 @@ public class Backpack : MonoBehaviour
         }
         
         _ui.IsShowUI = false;
+        _isHitInBackpack = false;
     }
 
     private void OnCollisionEnter(Collision other)
