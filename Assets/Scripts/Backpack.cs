@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Enum;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -7,8 +8,8 @@ using Zenject;
 [Serializable]
 public struct RouteItemToBackpack
 {
-    public Item item;
-    public Transform transform;
+    public ItemType itemType;
+    public Transform point;
 }
 
 public class Backpack : MonoBehaviour
@@ -18,8 +19,8 @@ public class Backpack : MonoBehaviour
     [Inject] private Raycaster _raycaster;
     [Inject] private WebRequestSystem _webRequestSystem;
 
-    public UnityEvent<Item> OnItemAdded;
-    public UnityEvent<Item> OnItemRemoved;
+    private UnityEvent<Item> _onItemAdded;
+    private UnityEvent<Item> _onItemRemoved;
 
     public List<RouteItemToBackpack> RouteItemToBackpack;
 
@@ -28,9 +29,9 @@ public class Backpack : MonoBehaviour
         _input.OnHoldLMB += OpenBackpack;
         _input.OnCancelHoldLMB += CloseBackpack;
         
-        OnItemAdded.AddListener((item) =>
+        _onItemAdded.AddListener((item) =>
             _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
-        OnItemRemoved.AddListener((item) =>
+        _onItemRemoved.AddListener((item) =>
             _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
     }
 
@@ -39,9 +40,9 @@ public class Backpack : MonoBehaviour
         _input.OnHoldLMB -= OpenBackpack;
         _input.OnCancelHoldLMB -= CloseBackpack;
         
-        OnItemAdded.RemoveListener((item) =>
+        _onItemAdded.RemoveListener((item) =>
             _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
-        OnItemRemoved.RemoveListener((item) =>
+        _onItemRemoved.RemoveListener((item) =>
             _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
     }
 
@@ -49,13 +50,13 @@ public class Backpack : MonoBehaviour
     {
         foreach (var route in RouteItemToBackpack)
         {
-            if (route.item != item) continue;
+            if (route.itemType != item.Data.type) continue;
 
             item.IsInBackpack = true;
-            item.MoveToPoint(route.transform);
+            item.MoveToPoint(route.point);
             _ui.AddItem(item);
             
-            OnItemAdded?.Invoke(item);
+            _onItemAdded?.Invoke(item);
         }
     }
 
@@ -73,7 +74,7 @@ public class Backpack : MonoBehaviour
 
         if (itemUi)
         {
-            OnItemRemoved?.Invoke(itemUi.Item);
+            _onItemRemoved?.Invoke(itemUi.Item);
             itemUi?.RemoveItem();
         }
         
