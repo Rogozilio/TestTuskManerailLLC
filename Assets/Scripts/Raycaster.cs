@@ -8,12 +8,17 @@ public class Raycaster : MonoBehaviour
     [Inject] private UI _ui;
     [Inject] private Input _input;
 
+    private Camera _camera;
+    private PointerEventData _pointerEventData;
+    
     private RaycastHit[] _hits;
     private List<RaycastResult> _hitsUI;
 
     private void Awake()
     {
         _hitsUI = new List<RaycastResult>();
+        _pointerEventData = new PointerEventData(_ui.EventSystem);
+        _camera = Camera.main;
     }
 
     private void FixedUpdate()
@@ -24,14 +29,14 @@ public class Raycaster : MonoBehaviour
     private void RaycastUI()
     {
         _hitsUI.Clear();
-        var pointerEventData = new PointerEventData(_ui.EventSystem);
-        pointerEventData.position = _input.GetMousePosition;
         
-        _ui.Raycaster.Raycast(pointerEventData, _hitsUI);
+        _pointerEventData.position = _input.GetMousePosition;
+        
+        _ui.Raycaster.Raycast(_pointerEventData, _hitsUI);
     }
     private void Raycast()
     {
-        var ray = Camera.main.ScreenPointToRay(_input.GetMousePosition);
+        var ray = _camera.ScreenPointToRay(_input.GetMousePosition);
 
         _hits = Physics.RaycastAll(ray);
     }
@@ -58,16 +63,10 @@ public class Raycaster : MonoBehaviour
         return null;
     }
 
-    public bool TryGetPositionHit(out Vector3 position, string tag = "")
+    public bool TryGetPositionHit(out Vector3 position, string tag)
     {
         position = Vector3.zero;
-
-        if (tag == string.Empty)
-        {
-            position = _hits[0].point;
-            return true;
-        }
-
+        
         foreach (var hit in _hits)
         {
             if (hit.transform.CompareTag(tag))
@@ -76,7 +75,8 @@ public class Raycaster : MonoBehaviour
                 return true;
             }
         }
-
+    
         return false;
     }
+    
 }

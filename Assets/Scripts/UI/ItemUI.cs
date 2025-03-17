@@ -19,7 +19,6 @@ public class ItemUI : MonoBehaviour
     public void RemoveItem()
     {
         if(!_item) return;
-        Debug.Log("Des");
         
         _item.MoveToRespawn(() =>
         {

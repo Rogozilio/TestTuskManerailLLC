@@ -19,6 +19,7 @@ public class Input : MonoBehaviour
 
         _inputActionAsset.FindAction("LMB").performed += (ctx) => { OnDownLMB(); };
         _inputActionAsset.FindAction("LMB").canceled += (ctx) => { OnUpLMB(); };
+        
         _inputActionAsset.FindAction("LMBHold").performed += (ctx) => { OnHoldLMB(); };
         _inputActionAsset.FindAction("LMBHold").canceled += (ctx) => { OnCancelHoldLMB(); };
     }
@@ -27,6 +28,7 @@ public class Input : MonoBehaviour
     {
         _inputActionAsset.FindAction("LMB").performed -= (ctx) => { OnDownLMB(); };
         _inputActionAsset.FindAction("LMB").canceled -= (ctx) => { OnUpLMB(); };
+        
         _inputActionAsset.FindAction("LMBHold").performed -= (ctx) => { OnHoldLMB(); };
         _inputActionAsset.FindAction("LMBHold").canceled -= (ctx) => { OnCancelHoldLMB(); };
         

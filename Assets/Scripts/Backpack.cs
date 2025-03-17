@@ -17,7 +17,7 @@ public class Backpack : MonoBehaviour
     [Inject] private Input _input;
     [Inject] private Raycaster _raycaster;
     
-    private RequstSystem _requstSystem;
+    private WebRequestSystem _webRequestSystem;
 
     public UnityEvent<Item> OnItemAdded;
     public UnityEvent<Item> OnItemRemoved;
@@ -26,15 +26,15 @@ public class Backpack : MonoBehaviour
 
     private void Awake()
     {
-        _requstSystem = new RequstSystem();
+        _webRequestSystem = new WebRequestSystem();
         
         _input.OnHoldLMB += OpenBackpack;
         _input.OnCancelHoldLMB += CloseBackpack;
         
         OnItemAdded.AddListener((item) =>
-            _requstSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
+            _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
         OnItemRemoved.AddListener((item) =>
-            _requstSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
+            _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
     }
 
     private void OnDestroy()
@@ -43,9 +43,9 @@ public class Backpack : MonoBehaviour
         _input.OnCancelHoldLMB -= CloseBackpack;
         
         OnItemAdded.RemoveListener((item) =>
-            _requstSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
+            _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Add"));
         OnItemRemoved.RemoveListener((item) =>
-            _requstSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
+            _webRequestSystem.SendInventoryEvent(item.Data.id.ToString(), "Remove"));
     }
 
     private void AddItem(Item item)

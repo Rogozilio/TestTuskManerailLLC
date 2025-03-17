@@ -1977,6 +1977,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemFlask
       objectReference: {fileID: 0}
+    - target: {fileID: 5726059635503942453, guid: db5507f1f772bfb449004ae2416de64e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2034,6 +2038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemMatches
       objectReference: {fileID: 0}
+    - target: {fileID: 2538983047299509003, guid: f453ed82d95a71d47bbf2a240a5acdc6, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2050,6 +2058,10 @@ PrefabInstance:
     - target: {fileID: 3563138508405963960, guid: 6c7fb8fa09d19c84998a3cf611fa1ce1, type: 3}
       propertyPath: m_Name
       value: ItemSleepingBag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563138508405963960, guid: 6c7fb8fa09d19c84998a3cf611fa1ce1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6990796876553983843, guid: 6c7fb8fa09d19c84998a3cf611fa1ce1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2117,6 +2129,10 @@ PrefabInstance:
     - target: {fileID: 2981085157917047193, guid: 775035dd532910742b54f4f7108898f8, type: 3}
       propertyPath: m_Name
       value: Backpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2981085157917047193, guid: 775035dd532910742b54f4f7108898f8, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4886698481811369907, guid: 775035dd532910742b54f4f7108898f8, type: 3}
       propertyPath: m_LocalPosition.x

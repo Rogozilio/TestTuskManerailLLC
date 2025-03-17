@@ -60,7 +60,7 @@
                     "name": "",
                     "id": "149de46c-e628-4a98-a86b-c9e04323180f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=1.5)",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "",
                     "action": "LMBHold",

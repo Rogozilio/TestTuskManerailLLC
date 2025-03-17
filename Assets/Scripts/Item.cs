@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -34,7 +33,7 @@ public class Item : MonoBehaviour
         _respawnEulerRotation = transform.eulerAngles;
     }
 
-    public void MoveTo(Vector3 point)
+    public void MoveToVelocity(Vector3 point)
     {
         _rigidbody.velocity = point - transform.position;
     }
