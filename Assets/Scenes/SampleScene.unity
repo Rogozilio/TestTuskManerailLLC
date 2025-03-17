@@ -724,6 +724,7 @@ MonoBehaviour:
   - {fileID: 471689834}
   - {fileID: 1780154903}
   - {fileID: 1620804520}
+  - {fileID: 1064822355}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -757,6 +758,7 @@ Transform:
   - {fileID: 471689833}
   - {fileID: 1780154904}
   - {fileID: 1620804521}
+  - {fileID: 1064822356}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &869847486
@@ -940,6 +942,50 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &1064822354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064822356}
+  - component: {fileID: 1064822355}
+  m_Layer: 0
+  m_Name: WebRequestInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1064822355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064822354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9e04d65dda43be876f2e0b413b0d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1064822356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064822354}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.2387875, y: -0, z: -0, w: 0.9710719}
+  m_LocalPosition: {x: -0.03, y: 2.05, z: -3.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 718833046}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1082663690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1353,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b20e73ef2275c34f8465611e6630293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagFloor: Floor
 --- !u!4 &1231137513
 Transform:
   m_ObjectHideFlags: 0

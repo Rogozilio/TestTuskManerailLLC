@@ -16,8 +16,7 @@ public class Backpack : MonoBehaviour
     [Inject] private UI _ui;
     [Inject] private Input _input;
     [Inject] private Raycaster _raycaster;
-    
-    private WebRequestSystem _webRequestSystem;
+    [Inject] private WebRequestSystem _webRequestSystem;
 
     public UnityEvent<Item> OnItemAdded;
     public UnityEvent<Item> OnItemRemoved;
@@ -26,8 +25,6 @@ public class Backpack : MonoBehaviour
 
     private void Awake()
     {
-        _webRequestSystem = new WebRequestSystem();
-        
         _input.OnHoldLMB += OpenBackpack;
         _input.OnCancelHoldLMB += CloseBackpack;
         

@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
-public class DragAndDropController : MonoBehaviour
+public class DragAndDrop : MonoBehaviour
 {
     [Inject] private Input _input;
     [Inject] private Raycaster _raycaster;
@@ -55,12 +52,12 @@ public class DragAndDropController : MonoBehaviour
     }
     
     #if (UNITY_EDITOR)
-    [CustomEditor(typeof(DragAndDropController))]
+    [CustomEditor(typeof(DragAndDrop))]
     public class DragAndDropControllerEditor : Editor
     {
         public override void OnInspectorGUI()
         {
-            DragAndDropController tagSelector = (DragAndDropController)target;
+            DragAndDrop tagSelector = (DragAndDrop)target;
             
             var tags = UnityEditorInternal.InternalEditorUtility.tags;
             
